@@ -32,7 +32,7 @@ ChatBot::ChatBot(std::string filename)
 
 // copy constructor
 ChatBot::ChatBot(const ChatBot &other) {
-    std::cout << "ChatBot Copy constructor";
+    std::cout << "ChatBot Copy constructor" << std::endl;
     this->_chatLogic = other._chatLogic;
     this->_currentNode = other._currentNode;
     this->_image = other._image;
@@ -41,7 +41,7 @@ ChatBot::ChatBot(const ChatBot &other) {
 
 // Copy Assignment Operator
 ChatBot& ChatBot::operator=(const ChatBot &other) {
-    std::cout << "ChatBot Copy assignment";
+    std::cout << "ChatBot Copy assignment" << std::endl;
     if (this != &other) {
         this->_chatLogic = other._chatLogic;
         this->_currentNode = other._currentNode;
@@ -53,7 +53,7 @@ ChatBot& ChatBot::operator=(const ChatBot &other) {
 
 // Move Constructor
 ChatBot::ChatBot(ChatBot &&other) {
-    std::cout << "ChatBot Move Constructor";
+    std::cout << "ChatBot Move Constructor" << std::endl;
 
     this->_chatLogic = other._chatLogic;
     this->_currentNode = other._currentNode;
@@ -68,7 +68,7 @@ ChatBot::ChatBot(ChatBot &&other) {
 
 // Move assignment
 ChatBot& ChatBot::operator=(ChatBot &&other) {
-    std::cout << "ChatBot Move Assignment";
+    std::cout << "ChatBot Move Assignment" << std::endl;
 
     if (this != &other) {
         this->_chatLogic = other._chatLogic;
@@ -147,6 +147,7 @@ void ChatBot::SetCurrentNode(GraphNode *node)
     std::uniform_int_distribution<int> dis(0, answers.size() - 1);
     std::string answer = answers.at(dis(generator));
 
+  	_chatLogic->SetChatbotHandle(this);
     // send selected node answer to user
     _chatLogic->SendMessageToUser(answer);
 }
